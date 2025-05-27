@@ -1,4 +1,4 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {}
+    "name": "weather-app",
+    "image": "ghcr.io/devcontainers-extra/features/cyclonedx-python:1"
 }
