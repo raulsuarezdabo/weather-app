@@ -2,12 +2,14 @@ import requests
 import json
 from datetime import datetime
 from pprint import pprint # Para una impresión más bonita de algunos JSON complejos
+import os
 
 # --- Configuración de Claves API ---
 # ¡¡¡REEMPLAZA ESTAS CLAVES CON LAS TUYAS!!!
-OPENWEATHERMAP_API_KEY = "TU_API_KEY_DE_OPENWEATHERMAP"
-WEATHERAPI_API_KEY = "TU_API_KEY_DE_WEATHERAPI"
-AEMET_API_KEY = "TU_API_KEY_DE_AEMET"
+
+openweathermap_api_key = os.environ.get("TU_API_KEY_DE_OPENWEATHERMAP")
+weather_api_key = os.environ.get("TU_API_KEY_DE_WEATHERAPI")
+aemet_api_key = os.environ.get("TU_API_KEY_DE_AEMET")
 
 # --- Ubicación ---
 CIUDAD = "Madrid"
@@ -196,23 +198,23 @@ if __name__ == "__main__":
     print(f"Fecha y Hora Actual: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     # Verificar si las claves API están configuradas (simple verificación)
-    if "TU_API_KEY" in OPENWEATHERMAP_API_KEY:
+    if "TU_API_KEY" in openweathermap_api_key:
         print("\nADVERTENCIA: La API Key de OpenWeatherMap no parece estar configurada.")
     else:
-        get_weather_openweathermap(OPENWEATHERMAP_API_KEY, CIUDAD, CODIGO_PAIS_OWM)
+        get_weather_openweathermap(openweathermap_api_key, CIUDAD, CODIGO_PAIS_OWM)
 
-    if "TU_API_KEY" in WEATHERAPI_API_KEY:
+    if "TU_API_KEY" in weather_api_key:
         print("\nADVERTENCIA: La API Key de WeatherAPI.com no parece estar configurada.")
     else:
-        get_weather_weatherapi(WEATHERAPI_API_KEY, CIUDAD)
+        get_weather_weatherapi(weather_api_key, CIUDAD)
 
-    if "TU_API_KEY" in AEMET_API_KEY:
+    if "TU_API_KEY" in aemet_api_key:
         print("\nADVERTENCIA: La API Key de AEMET no parece estar configurada.")
     else:
         # Para AEMET, usamos la predicción del municipio.
         # Si quieres observación directa de una estación, necesitarías un 'idema' diferente
         # y usar el endpoint de observación: /api/observacion/convencional/datos/estacion/{idema}
         # pero la predicción municipal es más robusta.
-        get_weather_aemet(AEMET_API_KEY, CODIGO_MUNICIPIO_AEMET)
+        get_weather_aemet(aemet_api_key, CODIGO_MUNICIPIO_AEMET)
 
     print("\n--- Fin del reporte del tiempo ---")

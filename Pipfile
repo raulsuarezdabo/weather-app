@@ -1,0 +1,22 @@
+[[source]]
+url = "https://github.com/raulsuarezdabo/weather-app"
+verify_ssl = true
+name = "weather-app"
+
+[packages]
+requests = "*"
+datetime = "*"
+
+[dev-packages]
+pytest = "*"
+
+[docs]
+sphinx = "*"
+sphinx-rtd-theme = "*"
+
+[tests]
+pytest-cov = "*"
+pytest-mock = "*"
+
+[requires]
+python_version = "3.12"
